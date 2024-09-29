@@ -39,7 +39,7 @@ interface ExpandMoreProps extends IconButtonProps {
 // Individual RecipeReviewCard component
 function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
   return (
-    <Card>
+    <Card className="mx-auto">
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
