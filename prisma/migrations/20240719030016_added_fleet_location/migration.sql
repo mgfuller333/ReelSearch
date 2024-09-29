@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE `fleets` ADD COLUMN `city` VARCHAR(191) NULL,
+    ADD COLUMN `country` VARCHAR(191) NULL,
+    ADD COLUMN `state` VARCHAR(191) NULL;

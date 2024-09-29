@@ -1,0 +1,155 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Account {
+  id                String   @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?  @db.Text
+  session_state     String?
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @default(now()) @map("updated_at")
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   Json?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id])
+
+  @@index([authorId])
+  @@map("posts")
+}
+
+model Fleet {
+  id          String            @id @unique @default(cuid())
+  name        String            @unique
+  ownerId     String
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @default(now())
+  vehicles    Json?
+  vehicleAvgs Json?
+  fleetType   String
+  contactInfo String?
+  city        String?
+  state       String?
+  country     String?
+  owner       User?              @relation("FleetOwner", fields: [ownerId], references: [id])
+  members     FleetMember[]
+  invitations FleetInvitation[]
+  admins      FleetAdmin[]
+
+  @@index([ownerId])
+  @@map("fleets")
+}
+
+model FleetAdmin {
+  id         String   @id @default(cuid())
+  userId     String
+  fleetId    String
+  assignedAt DateTime @default(now())
+  user       User?     @relation(fields: [userId], references: [id])
+  fleet      Fleet?    @relation(fields: [fleetId], references: [id])
+
+  @@unique([userId, fleetId])
+  @@index([fleetId])
+  @@map("fleet_admins")
+}
+
+model FleetMember {
+  id       String   @id @default(cuid())
+  userId   String
+  fleetId  String
+  joinedAt DateTime  @default(now())
+  user     User?     @relation(fields: [userId], references: [id])
+  fleet    Fleet?    @relation(fields: [fleetId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, fleetId])
+  @@index([fleetId])
+  @@map("fleet_members")
+}
+
+model FleetInvitation {
+  id        String   @id @default(cuid())
+  senderId  String
+  toId      String
+  fleetId   String
+  direction String
+  createdAt DateTime  @default(now())
+  status    String    @default("pending")
+  sender    User?     @relation("SentInvitations", fields: [senderId], references: [id])
+  to        User?     @relation("ReceivedInvitations", fields: [toId], references: [id])
+  fleet     Fleet?    @relation(fields: [fleetId], references: [id])
+  vehicles  Json?
+  @@unique([toId, fleetId])
+  @@index([senderId])
+  @@index([fleetId])
+  @@map("fleet_invitations")
+}
+
+model User {
+  id                     String            @id @default(cuid())
+  name                   String?
+  email                  String?           @unique
+  emailVerified          DateTime?
+  image                  String?
+  createdAt              DateTime          @default(now()) @map("created_at")
+  updatedAt              DateTime          @default(now()) @map("updated_at")
+  stripeCurrentPeriodEnd DateTime?         @map("stripe_current_period_end")
+  stripeCustomerId       String?           @unique @map("stripe_customer_id")
+  stripePriceId          String?           @map("stripe_price_id")
+  stripeSubscriptionId   String?           @unique @map("stripe_subscription_id")
+  accounts               Account[]
+  sessions               Session[]
+  Post                   Post[]
+  fleetsOwned            Fleet[]          @relation("FleetOwner")
+  fleetMemberships       FleetMember[]
+  fleetAdminRoles        FleetAdmin[]
+  sentInvitations        FleetInvitation[] @relation("SentInvitations")
+  receivedInvitations    FleetInvitation[] @relation("ReceivedInvitations")
+
+  @@map("users")
+}

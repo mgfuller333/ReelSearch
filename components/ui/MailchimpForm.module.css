@@ -1,0 +1,29 @@
+@import url(//cdn-images.mailchimp.com/embedcode/classic-061523.css);
+
+.mc_embed_signup {
+  background: #fff;
+  clear: left;
+  font: 14px Helvetica, Arial, sans-serif;
+  width: 600px;
+}
+
+/* Additional custom styles to ensure proper rendering */
+.mc_embed_signup input[type="email"],
+.mc_embed_signup input[type="submit"] {
+  all: unset;
+}
+
+.mc_embed_signup input[type="email"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+.mc_embed_signup input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}

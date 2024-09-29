@@ -1,0 +1,115 @@
+import { createEnv } from "@t3-oss/env-nextjs"
+import { z } from "zod"
+
+export const env = createEnv({
+  server: {
+    // This is optional because it's only used in development.
+    // See https://next-auth.js.org/deployment.
+    apiKey: z.string().min(1),
+    appId: z.string().min(1),
+    auth_provider_x509_cert_url: z.string().min(1),
+    auth_uri: z.string().min(1),
+    authDomain: z.string().min(1),
+    client_email: z.string().min(1),
+    client_id: z.string().min(1),
+    client_x509_cert_url: z.string().min(1),
+    DATABASE_URL: z.string().min(1),
+    GOOGLE_CLIENT_ID: z.string().min(1),
+    GOOGLE_CLIENT_SECRET: z.string().min(1),
+    measurementId: z.string().min(1),
+    messagingSenderId: z.string().min(1),
+    NEXT_PUBLIC_APP_URL: z.string().min(1),
+    NEXT_PUBLIC_FACEBOOK_PIXEL_ID: z.string().min(1),
+    NEXTAUTH_SECRET: z.string().min(1),
+    NEXTAUTH_URL: z.string().url().optional(),
+    OPENAI_API_KEY: z.string().min(1),
+    OPENAI_ORG_ID: z.string().min(1),
+    PINECONE_KEY: z.string().min(1),
+    private_key: z.string().min(1),
+    private_key_id: z.string().min(1),
+    FACEBOOKCONVTOKEN: z.string().min(1),
+    projectId: z.string().min(1),
+    storageBucket: z.string().min(1),
+    STRIPE_API_KEY: z.string().min(1),
+    STRIPE_PRO_MONTHLY_PLAN_ID: z.string().min(1),
+    STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    token_uri: z.string().min(1),
+    type: z.string().min(1),
+    universe_domain: z.string().min(1),
+    EMAIL_SERVER_USER: z.string().min(1),
+EMAIL_SERVER_PASSWORD:  z.string().min(1),
+EMAIL_SERVER_HOST:  z.string().min(1),
+EMAIL_SERVER_PORT:  z.string().min(1),
+EMAIL_FROM:  z.string().min(1),
+   
+  },
+  client: {
+    NEXT_PUBLIC_APP_URL: z.string().min(1),
+  },
+  runtimeEnv: {
+    apiKey: process.env.apiKey,
+    appId: process.env.appId,
+    auth_provider_x509_cert_url:  process.env.auth_provider_x509_cert_url,
+    auth_uri:  process.env.auth_uri,
+    authDomain:  process.env.authDomain,
+    client_email:  process.env.client_email,
+    client_id:  process.env.client_id,
+    client_x509_cert_url:  process.env.client_x509_cert_url,
+    DATABASE_URL:  process.env.DATABASE_URL,
+    GOOGLE_CLIENT_ID:  process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET:  process.env.GOOGLE_CLIENT_SECRET,
+    measurementId:  process.env.measurementId,
+    messagingSenderId:  process.env.messagingSenderId,
+    NEXT_PUBLIC_APP_URL:  process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_FACEBOOK_PIXEL_ID:  process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
+    NEXTAUTH_SECRET:  process.env.NEXTAUTH_SECRET,
+    NEXTAUTH_URL:  process.env.NEXTAUTH_URL,
+    OPENAI_API_KEY:  process.env.OPENAI_API_KEY,
+    OPENAI_ORG_ID:  process.env.OPENAI_ORG_ID,
+    PINECONE_KEY:  process.env.PINECONE_KEY,
+    private_key:  process.env.private_key,
+    private_key_id:  process.env.FACEBOOKCONVTOKEN,
+    FACEBOOKCONVTOKEN: process.env.PINECONE_KEY,
+    projectId:  process.env.projectId,
+    storageBucket:  process.env.storageBucket,
+    STRIPE_API_KEY:  process.env.STRIPE_API_KEY,
+    STRIPE_PRO_MONTHLY_PLAN_ID:  process.env.STRIPE_PRO_MONTHLY_PLAN_ID,
+    STRIPE_WEBHOOK_SECRET:  process.env.STRIPE_WEBHOOK_SECRET,
+    token_uri:  process.env.token_uri,
+    type:  process.env.type,
+    universe_domain:  process.env.universe_domain,
+   
+
+
+
+
+
+
+
+
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    // GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+    // GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    // GITHUB_ACCESS_TOKEN: process.env.GITHUB_ACCESS_TOKEN,
+    DATABASE_URL: process.env.DATABASE_URL,
+    // SMTP_FROM: process.env.SMTP_FROM,
+    // POSTMARK_API_TOKEN: process.env.POSTMARK_API_TOKEN,
+    // POSTMARK_SIGN_IN_TEMPLATE: process.env.POSTMARK_SIGN_IN_TEMPLATE,
+    // POSTMARK_ACTIVATION_TEMPLATE: process.env.POSTMARK_ACTIVATION_TEMPLATE,
+    STRIPE_API_KEY: process.env.STRIPE_API_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    STRIPE_PRO_MONTHLY_PLAN_ID: process.env.STRIPE_PRO_MONTHLY_PLAN_ID,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    NEXT_PUBLIC_FACEBOOK_PIXEL_ID: process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID,
+    EMAIL_SERVER_USER: process.env.EMAIL_SERVER_USER,
+    EMAIL_SERVER_PASSWORD: process.env.EMAIL_SERVER_PASSWORD,
+    EMAIL_SERVER_HOST: process.env.EMAIL_SERVER_PASSWORD,
+    EMAIL_SERVER_PORT: process.env.EMAIL_SERVER_PASSWORD,
+    EMAIL_FROM: process.env.EMAIL_SERVER_PASSWORD,
+
+    
+  },
+})
