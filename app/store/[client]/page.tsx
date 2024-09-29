@@ -97,7 +97,7 @@ export default function RestaurantCards({
       title: "Shrimp and Chorizo Paella",
       subheader: "September 14, 2016",
       url: "6990741863397395717",
-      description: "This impressive paella is a perfect party dish...",
+      description: "This impressive paella is a perfect party dish...", //
       avatar: "R",
     },
     {
