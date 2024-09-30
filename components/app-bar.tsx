@@ -1,5 +1,4 @@
 import * as React from "react"
-import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
@@ -13,19 +12,36 @@ export default function BottomAppBar({ client }) {
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary" sx={{ bottom: "auto", top: 0 }}>
-        <Toolbar>
-          <IconButton color="inherit" aria-label="open drawer">
-            <CatalogNav />
-          </IconButton>
-          <Box sx={{ flexGrow: 0.5 }} />
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            position: "relative",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <IconButton color="inherit" aria-label="open drawer">
+              <CatalogNav />
+            </IconButton>
+          </Box>
 
-          <Typography variant="h5">{client}</Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              position: "absolute",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            {client}
+          </Typography>
 
-          <Box sx={{ flexGrow: 1 }} />
-
-          <IconButton color="inherit">
-            <ShoppingCartIcon />
-          </IconButton>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <IconButton color="inherit">
+              <ShoppingCartIcon />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
     </React.Fragment>

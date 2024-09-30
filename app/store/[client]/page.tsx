@@ -55,16 +55,26 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
       </CardContent>
       <CardActions
         disableSpacing
-        className="flex flex-row justify-center items-center"
+        className="flex flex-row justify-center space-x-4 items-center"
       >
-        <IconButton aria-label="add to favorites">
+        <IconButton className="space-x-1" aria-label="add to favorites">
           <FavoriteIcon />
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            {"Like"}
+          </Typography>
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton aria-label="comments">
+
+        <IconButton className="space-x-1" aria-label="comments">
           <ChatOutlinedIcon />
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            {"Comments"}
+          </Typography>
+        </IconButton>
+        <IconButton className="space-x-1" aria-label="share">
+          <ShareIcon />
+          <Typography variant="body2" sx={{ color: "text.secondary" }}>
+            {"Share"}
+          </Typography>
         </IconButton>
 
         <CardActions>
