@@ -6,22 +6,17 @@ import FavoriteIcon from "@mui/icons-material/Favorite"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ShareIcon from "@mui/icons-material/Share"
 import Avatar from "@mui/material/Avatar"
-import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import CardActions from "@mui/material/CardActions"
 import CardContent from "@mui/material/CardContent"
 import CardHeader from "@mui/material/CardHeader"
 import CardMedia from "@mui/material/CardMedia"
-import Collapse from "@mui/material/Collapse"
-import FormControl from "@mui/material/FormControl"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
-import InputLabel from "@mui/material/InputLabel"
-import MenuItem from "@mui/material/MenuItem"
-import Select, { SelectChangeEvent } from "@mui/material/Select"
 import Typography from "@mui/material/Typography"
 import { red } from "@mui/material/colors"
 
-import CatalogDrawer from "@/components/catalog-drawer"
+import BackToTopMenu from "@/components/app-bar"
+import BottomAppBar from "@/components/app-bar"
 import CatalogFilter from "@/components/catalog-filter"
 import CatalogNav from "@/components/catalog-select"
 import TikTokVideo from "@/components/tikTokEmbed"
@@ -30,10 +25,6 @@ import TikTokIframe from "@/components/tikTokIframe"
 export const metadata = {
   title: "Promo",
   description: "Enjoy a Promotional Offer from one of reelSearch's Partners",
-}
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean
 }
 
 // Individual RecipeReviewCard component
@@ -151,12 +142,12 @@ export default function RestaurantCards({
 
   return (
     <div className="flex flex-row-reverse justify-start flex-row bg-white min-h-screen overflow-hidden">
+      <BottomAppBar client={params.client} />
       <div className="w-full px-4 flex flex-col gap-6 p-4 text-black dark:text-white">
         <Typography variant="h4" className="text-center">
           {params.client}
         </Typography>
-        <CatalogNav />
-        <CatalogFilter />
+
         {restaurantItems.map((item, index) => (
           <RecipeReviewCard
             key={index}

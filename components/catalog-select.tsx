@@ -1,35 +1,119 @@
-"use client"
-
 import * as React from "react"
 import Box from "@mui/material/Box"
 import FormControl from "@mui/material/FormControl"
 import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
-import Select, { SelectChangeEvent } from "@mui/material/Select"
+import Select from "@mui/material/Select"
 
 export default function CatalogNav() {
-  const [age, setAge] = React.useState("")
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string)
-  }
-
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Menu</InputLabel>
+        <InputLabel
+          id="demo-simple-select-label"
+          sx={{
+            color: "white",
+            "&.Mui-focused": {
+              color: "transparent !important",
+            },
+            "&.MuiInputLabel-shrink": {
+              color: "transparent !important",
+            },
+          }}
+        >
+          Menu
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          label="Age"
-          onChange={handleChange}
+          sx={{
+            color: "white",
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "white",
+            },
+            "& .MuiSvgIcon-root": {
+              color: "white",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "white",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "white",
+            },
+            "& .MuiInputBase-input": {
+              color: "white",
+            },
+            "& .MuiSelect-selectMenu": {
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              borderRadius: "4px",
+            },
+          }}
+          inputProps={{
+            sx: {
+              color: "white",
+            },
+          }}
         >
-          <MenuItem value={10}>Starters</MenuItem>
-          <MenuItem value={20}>Entres</MenuItem>
-          <MenuItem value={30}>Drinks</MenuItem>
-          <MenuItem value={30}>Sides</MenuItem>
-          <MenuItem value={30}>Deserts</MenuItem>
+          <MenuItem
+            value={10}
+            sx={{
+              backgroundColor: "white",
+              color: "black",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              },
+            }}
+          >
+            Starters
+          </MenuItem>
+          <MenuItem
+            value={20}
+            sx={{
+              backgroundColor: "white",
+              color: "black",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              },
+            }}
+          >
+            Entrees
+          </MenuItem>
+          <MenuItem
+            value={30}
+            sx={{
+              backgroundColor: "white",
+              color: "black",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              },
+            }}
+          >
+            Drinks
+          </MenuItem>
+          <MenuItem
+            value={30}
+            sx={{
+              backgroundColor: "white",
+              color: "black",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              },
+            }}
+          >
+            Sides
+          </MenuItem>
+          <MenuItem
+            value={30}
+            sx={{
+              backgroundColor: "white",
+              color: "black",
+              "&:hover": {
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+              },
+            }}
+          >
+            Deserts
+          </MenuItem>
         </Select>
       </FormControl>
     </Box>
