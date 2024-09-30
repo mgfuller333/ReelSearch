@@ -39,7 +39,7 @@ interface ExpandMoreProps extends IconButtonProps {
 // Individual RecipeReviewCard component
 function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
   return (
-    <Card className="mx-auto">
+    <Card className="mx-auto content-end w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -54,20 +54,18 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
         title={title}
         subheader={subheader}
       />
-      <CardMedia>
-        {/* <TikTokVideo
-          tiktokUrl={
-            "https://www.tiktok.com/@epicgardening/video/7055411162212633903"
-          }
-        /> */}
+      <CardMedia className="flex flex-col items-center">
         <TikTokIframe videoId={tiktokID} />
       </CardMedia>
-      <CardContent>
+      <CardContent className="flex flex-col items-center">
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           {description}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions
+        disableSpacing
+        className="flex flex-row justify-center items-center"
+      >
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
@@ -152,30 +150,23 @@ export default function RestaurantCards({
   ]
 
   return (
-    <div className="flex flex-row bg-white">
-      <div className=" basis-1/6">
-        <CatalogDrawer />
-      </div>
-
-      <div className="basis-4/6">
-        <div className="mx-auto flex flex-col gap-6 p-4 text-black dark:text-white">
-          <Typography variant="h4" className="text-center">
-            {params.client}
-          </Typography>
-          {/* <Typography variant="h4">NOBU</Typography> */}
-          <CatalogNav />
-          <CatalogFilter />
-          {restaurantItems.map((item, index) => (
-            <RecipeReviewCard
-              key={index}
-              title={item.title}
-              subheader={item.subheader}
-              tiktokID={item.url}
-              description={item.description}
-              avatar={item.avatar}
-            />
-          ))}
-        </div>
+    <div className="flex flex-row-reverse justify-start flex-row bg-white min-h-screen overflow-hidden">
+      <div className="w-full px-4 flex flex-col gap-6 p-4 text-black dark:text-white">
+        <Typography variant="h4" className="text-center">
+          {params.client}
+        </Typography>
+        <CatalogNav />
+        <CatalogFilter />
+        {restaurantItems.map((item, index) => (
+          <RecipeReviewCard
+            key={index}
+            title={item.title}
+            subheader={item.subheader}
+            tiktokID={item.url}
+            description={item.description}
+            avatar={item.avatar}
+          />
+        ))}
       </div>
     </div>
   )
