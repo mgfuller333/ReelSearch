@@ -26,6 +26,7 @@ export default function CatalogNav() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
+          size="small"
           sx={{
             color: "white",
             "& .MuiOutlinedInput-notchedOutline": {
