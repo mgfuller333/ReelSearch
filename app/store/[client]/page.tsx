@@ -1,10 +1,13 @@
 import * as React from "react"
 import Link from "next/link"
+import CarouselComponent from "@/productUI/productCarousel"
+import TikTokIframe from "@/productUI/tikTokIframe"
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined"
 // This will dynamically load ExpandMore only on the client
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ShareIcon from "@mui/icons-material/Share"
+import { Chip } from "@mui/material"
 import Avatar from "@mui/material/Avatar"
 import Card from "@mui/material/Card"
 import CardActions from "@mui/material/CardActions"
@@ -19,8 +22,8 @@ import BackToTopMenu from "@/components/app-bar"
 import BottomAppBar from "@/components/app-bar"
 import CatalogFilter from "@/components/catalog-filter"
 import CatalogNav from "@/components/catalog-select"
+import NestedChip from "@/components/nestedChip"
 import TikTokVideo from "@/components/tikTokEmbed"
-import TikTokIframe from "@/components/tikTokIframe"
 
 export const metadata = {
   title: "Promo",
@@ -32,11 +35,6 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
   return (
     <Card className="mx-auto content-end w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {avatar}
-          </Avatar>
-        }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
@@ -47,8 +45,16 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
       />
       <CardMedia className="flex flex-col items-center">
         <TikTokIframe videoId={tiktokID} />
+        {/* <CarouselComponent /> */}
       </CardMedia>
-      <CardContent className="flex flex-col items-center">
+      <CardContent className="flex flex-col w-100">
+        <div className="flex flex-row gap-x-1 pb-2 items-center w-100">
+          <NestedChip title={"Dish 1"} amount={"9"} currencyCode={"USD"} />
+          <Link href="/" className="">
+            <Chip variant="outlined" color="primary" label="Learn More" />
+          </Link>
+        </div>
+
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           {description}
         </Typography>
@@ -76,10 +82,6 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
             {"Share"}
           </Typography>
         </IconButton>
-
-        <CardActions>
-          <Link href="/">Learn More</Link>
-        </CardActions>
       </CardActions>
     </Card>
   )
@@ -94,59 +96,67 @@ export default function RestaurantCards({
   const restaurantItems = [
     {
       title: "Shrimp and Chorizo Paella",
-      subheader: "September 14, 2016",
+      subheader: "Updated September 14, 2016",
       url: "6990741863397395717",
-      description: "This impressive paella is a perfect party dish...", //
+      description:
+        "This flavorful paella combines juicy shrimp, smoky chorizo, and saffron rice. A one-pan Spanish classic, perfect for sharing with friends.",
       avatar: "R",
     },
     {
       title: "Spaghetti Carbonara",
-      subheader: "October 12, 2020",
+      subheader: "Updated October 12, 2020",
       url: "7383911964977728810",
-      description: "A classic Italian pasta dish...",
+      description:
+        "A classic Italian pasta made with spaghetti, creamy egg yolk sauce, Parmesan, and crispy pancetta. A simple yet indulgent dish.",
       avatar: "S",
     },
     {
       title: "Margherita Pizza",
-      subheader: "August 18, 2021",
+      subheader: "Updated August 18, 2021",
       url: "7224632218197527854",
-      description: "Simple yet delicious Margherita pizza...", //hi
+      description:
+        "A traditional Margherita pizza with fresh tomatoes, mozzarella, and basil. Baked to perfection with a crisp crust and balanced flavors.",
       avatar: "P",
     },
     {
       title: "Chicken Tikka Masala",
-      subheader: "July 4, 2019",
+      subheader: "Updated July 4, 2019",
       url: "7313362485057162502",
-      description: "A popular dish of marinated chicken pieces...",
+      description:
+        "Tender chicken pieces in a rich, creamy tomato sauce with a blend of aromatic spices. A beloved fusion of Indian and British flavors.",
       avatar: "C",
     },
     {
       title: "Sushi Platter",
-      subheader: "June 26, 2022",
+      subheader: "Updated June 26, 2022",
       url: "7122678482835950850",
-      description: "An assortment of fresh sushi...",
+      description:
+        "An elegant assortment of fresh sushi, featuring nigiri, sashimi, and rolls. A delightful mix of flavors and textures for sushi enthusiasts.",
       avatar: "S",
     },
     {
       title: "Tacos al Pastor",
-      subheader: "March 15, 2018",
+      subheader: "Updated March 15, 2018",
       url: "7178638944937069830",
-      description: "A traditional Mexican dish with marinated pork...",
+      description:
+        "Marinated pork, slow-cooked and served in soft tortillas, topped with cilantro, onions, and pineapple for a deliciously authentic taco experience.",
       avatar: "T",
     },
     {
       title: "Beef Wellington",
-      subheader: "November 11, 2021",
+      subheader: "Updated November 11, 2021",
       url: "7351121562461916423",
-      description: "A show-stopping main course for special occasions...",
+      description:
+        "A tender beef tenderloin wrapped in mushrooms, prosciutto, and puff pastry. Baked golden for a stunning main dish.",
       avatar: "B",
     },
     {
       title: "Chocolate Lava Cake",
-      subheader: "February 9, 2020",
+      subheader: "Updated February 9, 2020",
       url: "7238725926853430570",
-      description: "A rich and gooey chocolate dessert...",
-      avatar: "L", //helped
+      description:
+        "A decadent chocolate cake with a molten center that oozes out. Perfect with a scoop of vanilla ice cream or fresh berries.",
+      avatar: "L",
     },
   ]
 

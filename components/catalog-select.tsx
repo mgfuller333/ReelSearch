@@ -7,8 +7,8 @@ import Select from "@mui/material/Select"
 
 export default function CatalogNav() {
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
+    <Box sx={{ minWidth: 100 }}>
+      <FormControl sx={{ width: 110 /* Set your desired width here */ }}>
         <InputLabel
           id="demo-simple-select-label"
           sx={{
