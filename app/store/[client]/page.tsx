@@ -1,13 +1,14 @@
 import * as React from "react"
 import Link from "next/link"
 import CarouselComponent from "@/productUI/productCarousel"
+import BasicRating from "@/productUI/rating"
 import TikTokIframe from "@/productUI/tikTokIframe"
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined"
 // This will dynamically load ExpandMore only on the client
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ShareIcon from "@mui/icons-material/Share"
-import { Chip } from "@mui/material"
+import { Badge, Chip } from "@mui/material"
 import Avatar from "@mui/material/Avatar"
 import Card from "@mui/material/Card"
 import CardActions from "@mui/material/CardActions"
@@ -40,15 +41,17 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
           </IconButton>
         }
         title={title}
-        subheader={subheader}
-      />
+        subheader={"$9.00"}
+      >
+        <NestedChip title={"Dish 1"} amount={"9"} currencyCode={"USD"} />
+      </CardHeader>
       <CardMedia className="flex flex-col items-center">
         <TikTokIframe videoId={tiktokID} />
         {/* <CarouselComponent /> */}
       </CardMedia>
       <CardContent className="flex flex-col w-100">
-        <div className="flex flex-row gap-x-1 pb-2 items-center w-100">
-          <NestedChip title={"Dish 1"} amount={"9"} currencyCode={"USD"} />
+        <div className="flex flex-row gap-x-4 pb-2 items-center w-100">
+          <BasicRating />
           <Link href="/" className="">
             <Chip variant="outlined" color="primary" label="Learn More" />
           </Link>
@@ -62,15 +65,11 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
         disableSpacing
         className="flex flex-row justify-center space-x-4 items-center"
       >
-        <IconButton className="space-x-1" aria-label="add to favorites">
-          <FavoriteIcon />
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {"Like"}
-          </Typography>
-        </IconButton>
+        <IconButton className="space-x-3" aria-label="comments">
+          <Badge badgeContent={1} color="secondary">
+            <ChatOutlinedIcon />
+          </Badge>
 
-        <IconButton className="space-x-1" aria-label="comments">
-          <ChatOutlinedIcon />
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {"Comments"}
           </Typography>
