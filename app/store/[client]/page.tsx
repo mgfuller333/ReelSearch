@@ -23,7 +23,6 @@ import BottomAppBar from "@/components/app-bar"
 import CatalogFilter from "@/components/catalog-filter"
 import CatalogNav from "@/components/catalog-select"
 import NestedChip from "@/components/nestedChip"
-import TikTokVideo from "@/components/tikTokEmbed"
 
 export const metadata = {
   title: "Promo",
