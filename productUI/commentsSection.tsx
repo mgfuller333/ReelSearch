@@ -10,7 +10,7 @@ const DefaultCommentSection = () => {
       comId: "017",
       fullName: "Lily",
       userProfile: "https://www.linkedin.com/in/riya-negi-8879631a9/",
-      text: "I think you have a point🤔",
+      text: "That was so good!",
       timestamp: "2024-09-28T10:34:56Z",
       avatarUrl: "https://ui-avatars.com/api/name=Lily&background=random",
       replies: [],

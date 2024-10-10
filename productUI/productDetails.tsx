@@ -2,12 +2,12 @@ import * as React from "react"
 import Link from "next/link"
 import DefaultCommentSection from "@/productUI/commentsSection"
 import CarouselComponent from "@/productUI/productCarousel"
-import ProductNavigation from "@/productUI/productNav"
 import BasicRating from "@/productUI/rating"
+import RatingFav from "@/productUI/rating"
 import TikTokIframe from "@/productUI/tikTokIframe"
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined"
 // This will dynamically load ExpandMore only on the client
-import FavoriteIcon from "@mui/icons-material/Favorite"
+
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ShareIcon from "@mui/icons-material/Share"
 import { Badge, Chip } from "@mui/material"
@@ -46,16 +46,7 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
       </CardMedia>
       <CardContent className="flex flex-col w-100">
         <div className="flex flex-row gap-x-4 pb-2 items-center w-100">
-          <BasicRating />
-          <Link href="/" className="">
-            <Chip
-              size="small"
-              variant="outlined"
-              color="primary"
-              label="Save"
-              icon={<FavoriteIcon />}
-            />
-          </Link>
+          <RatingFav />
         </div>
 
         <Typography variant="body2" sx={{ color: "text.secondary" }}>

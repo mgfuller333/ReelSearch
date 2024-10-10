@@ -4,8 +4,8 @@ import CarouselComponent from "@/productUI/productCarousel"
 import BasicRating from "@/productUI/rating"
 import TikTokIframe from "@/productUI/tikTokIframe"
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined"
-// This will dynamically load ExpandMore only on the client
 import FavoriteIcon from "@mui/icons-material/Favorite"
+// This will dynamically load ExpandMore only on the client
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ShareIcon from "@mui/icons-material/Share"
 import { Badge, Chip } from "@mui/material"
@@ -136,11 +136,16 @@ export default function RestaurantCards({
           <TikTokIframe videoId={tiktokID} />
           {/* <CarouselComponent /> */}
         </CardMedia>
-        <CardContent className="flex flex-col w-100">
-          <div className="flex flex-row gap-x-4 pb-2 items-center w-100">
-            <BasicRating />
+        <CardContent className="flex flex-col w-100 p-2">
+          <BasicRating />
+          <div className="flex flex-row gap-x-4 py-2 items-center w-100">
             <Link href={`/store/${params.client}/${productID}`} className="">
-              <Chip variant="outlined" color="primary" label="Learn More" />
+              <Chip
+                size="small"
+                variant="outlined"
+                color="primary"
+                label="Learn More"
+              />
             </Link>
           </div>
 
@@ -156,10 +161,11 @@ export default function RestaurantCards({
             <Badge badgeContent={1} color="secondary">
               <ChatOutlinedIcon />
             </Badge>
-
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              {"Comments"}
-            </Typography>
+            <Link href={`/store/${params.client}/${productID}`} className="">
+              <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                {"Comments"}
+              </Typography>
+            </Link>
           </IconButton>
           <IconButton className="space-x-1" aria-label="share">
             <ShareIcon />

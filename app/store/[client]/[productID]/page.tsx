@@ -1,31 +1,31 @@
+"use client"
+
 import * as React from "react"
+import { useState } from "react"
 import Link from "next/link"
 import DefaultCommentSection from "@/productUI/commentsSection"
-import CarouselComponent from "@/productUI/productCarousel"
-import ProductNavigation from "@/productUI/productNav"
 import BasicRating from "@/productUI/rating"
 import TikTokIframe from "@/productUI/tikTokIframe"
+import { setProductNavState } from "@/store/slices/productNavSlice"
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined"
 // This will dynamically load ExpandMore only on the client
-import FavoriteIcon from "@mui/icons-material/Favorite"
+
+import InfoIcon from "@mui/icons-material/Info"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ShareIcon from "@mui/icons-material/Share"
-import { Badge, Chip } from "@mui/material"
-import Avatar from "@mui/material/Avatar"
+import { Badge, Box, Chip, CssBaseline } from "@mui/material"
+import BottomNavigation from "@mui/material/BottomNavigation"
+import BottomNavigationAction from "@mui/material/BottomNavigationAction"
 import Card from "@mui/material/Card"
 import CardActions from "@mui/material/CardActions"
 import CardContent from "@mui/material/CardContent"
 import CardHeader from "@mui/material/CardHeader"
 import CardMedia from "@mui/material/CardMedia"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
+import Paper from "@mui/material/Paper"
 import Typography from "@mui/material/Typography"
 
 import TopAppBar from "@/components/app-bar"
-
-export const metadata = {
-  title: "Promo",
-  description: "Enjoy a Promotional Offer from one of reelSearch's Partners",
-}
 
 // Individual RecipeReviewCard component
 function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
@@ -38,6 +38,7 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
           </IconButton>
         }
         title={title}
+        titleTypographyProps={{ className: "text-sm" }}
         subheader={"$9.00"}
       ></CardHeader>
       <CardMedia className="flex flex-col items-center">
@@ -45,18 +46,8 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
         {/* <CarouselComponent /> */}
       </CardMedia>
       <CardContent className="flex flex-col w-100">
-        <div className="flex flex-row gap-x-4 pb-2 items-center w-100">
-          <BasicRating />
-          <Link href="/" className="">
-            <Chip
-              size="small"
-              variant="outlined"
-              color="primary"
-              label="Save"
-              icon={<FavoriteIcon />}
-            />
-          </Link>
-        </div>
+        <BasicRating />
+        <div className="flex flex-row gap-x-4 py-2 items-center w-100"></div>
 
         <Typography variant="body2" sx={{ color: "text.secondary" }}>
           {description}
@@ -72,6 +63,9 @@ export default function RestaurantCards({
 }: {
   params: { productID: string; client: string }
 }) {
+  const [producNav, setProductNav] = useState("Details")
+  const ref = React.useRef<HTMLDivElement>(null)
+
   const restaurantItems = [
     {
       productID: "Shrimp-and-Chorizo-Paella",
@@ -150,25 +144,60 @@ export default function RestaurantCards({
   return (
     <div className="flex flex-row-reverse py-12 justify-start flex-row bg-white min-h-screen overflow-hidden">
       <TopAppBar client={params.client} />
-      <div className="w-full px-4 flex flex-col gap-6 p-4 text-black dark:text-white">
-        {restaurantItems
-          .filter((menuItem) => menuItem.productID === params.productID)
-          .map((item, index) => (
-            <RecipeReviewCard
-              key={index}
-              title={item.title}
-              subheader={item.subheader}
-              tiktokID={item.url}
-              description={item.description}
-              avatar={item.avatar}
+      {producNav == "Details" && (
+        <div className="w-full px-4 flex flex-col gap-6 p-4 text-black dark:text-white">
+          {restaurantItems
+            .filter((menuItem) => menuItem.productID === params.productID)
+            .map((item, index) => (
+              <RecipeReviewCard
+                key={index}
+                title={item.title}
+                subheader={item.subheader}
+                tiktokID={item.url}
+                description={item.description}
+                avatar={item.avatar}
+              />
+            ))}
+        </div>
+      )}
+      {producNav == "Comments" && (
+        <div className="w-full px-4 flex flex-col gap-6 p-4 text-black dark:text-white">
+          <DefaultCommentSection />
+        </div>
+      )}
+
+      <Box sx={{ pb: 7 }} ref={ref}>
+        <CssBaseline />
+        <Paper
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          elevation={3}
+        >
+          <BottomNavigation
+            showLabels
+            value={producNav}
+            onChange={(event, newValue) => {
+              setProductNav(newValue)
+              console.log("newValue", newValue)
+            }}
+          >
+            <BottomNavigationAction
+              label="Details"
+              value={"Details"}
+              icon={<InfoIcon />}
             />
-          ))}
-      </div>
-      {/* use redux to change state of what is shown */}
-      {/* product details */}
-      {/* product comments */}
-      {/* product share */}
-      <ProductNavigation />
+            <BottomNavigationAction
+              label="Comments"
+              value={"Comments"}
+              icon={<ChatOutlinedIcon />}
+            />
+            <BottomNavigationAction
+              label="Share"
+              value="Details"
+              icon={<ShareIcon />}
+            />
+          </BottomNavigation>
+        </Paper>
+      </Box>
     </div>
   )
 }
