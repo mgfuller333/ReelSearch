@@ -6,7 +6,6 @@ import Link from "next/link"
 import DefaultCommentSection from "@/productUI/commentsSection"
 import BasicRating from "@/productUI/rating"
 import TikTokIframe from "@/productUI/tikTokIframe"
-import { setProductNavState } from "@/store/slices/productNavSlice"
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined"
 // This will dynamically load ExpandMore only on the client
 
