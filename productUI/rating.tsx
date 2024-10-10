@@ -9,7 +9,7 @@ export default function BasicRating() {
   const [value, setValue] = React.useState<number | null>(2)
 
   return (
-    <Box sx={{ "& > legend": { mt: 2 } }}>
+    <Box sx={{ "& > legend": { mt: 2 }, mt: 0.5 }}>
       <Rating
         name="simple-controlled"
         value={value}

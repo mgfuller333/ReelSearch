@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography"
 
 import CatalogNav from "./catalog-select"
 
-export default function BottomAppBar({ client }) {
+export default function TopAppBar({ client }) {
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary" sx={{ bottom: "auto", top: 0 }}>

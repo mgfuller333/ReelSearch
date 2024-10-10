@@ -1,6 +1,8 @@
 import * as React from "react"
 import Link from "next/link"
+import DefaultCommentSection from "@/productUI/commentsSection"
 import CarouselComponent from "@/productUI/productCarousel"
+import ProductNavigation from "@/productUI/productNav"
 import BasicRating from "@/productUI/rating"
 import TikTokIframe from "@/productUI/tikTokIframe"
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined"
@@ -17,13 +19,8 @@ import CardHeader from "@mui/material/CardHeader"
 import CardMedia from "@mui/material/CardMedia"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
 import Typography from "@mui/material/Typography"
-import { red } from "@mui/material/colors"
 
-import BackToTopMenu from "@/components/app-bar"
 import TopAppBar from "@/components/app-bar"
-import CatalogFilter from "@/components/catalog-filter"
-import CatalogNav from "@/components/catalog-select"
-import NestedChip from "@/components/nestedChip"
 
 export const metadata = {
   title: "Promo",
@@ -31,12 +28,49 @@ export const metadata = {
 }
 
 // Individual RecipeReviewCard component
+function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
+  return (
+    <Card className="mx-auto content-end w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
+      <CardHeader
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title={title}
+        subheader={"$9.00"}
+      ></CardHeader>
+      <CardMedia className="flex flex-col items-center">
+        <TikTokIframe videoId={tiktokID} />
+        {/* <CarouselComponent /> */}
+      </CardMedia>
+      <CardContent className="flex flex-col w-100">
+        <div className="flex flex-row gap-x-4 pb-2 items-center w-100">
+          <BasicRating />
+          <Link href="/" className="">
+            <Chip
+              size="small"
+              variant="outlined"
+              color="primary"
+              label="Save"
+              icon={<FavoriteIcon />}
+            />
+          </Link>
+        </div>
+
+        <Typography variant="body2" sx={{ color: "text.secondary" }}>
+          {description}
+        </Typography>
+      </CardContent>
+    </Card>
+  )
+}
 
 // Main component to render multiple RecipeReviewCards
 export default function RestaurantCards({
   params,
 }: {
-  params: { client: string }
+  params: { productID: string; client: string }
 }) {
   const restaurantItems = [
     {
@@ -113,85 +147,28 @@ export default function RestaurantCards({
     },
   ]
 
-  function RecipeReviewCard({
-    title,
-    productID,
-    subheader,
-    tiktokID,
-    description,
-    avatar,
-  }) {
-    return (
-      <Card className="mx-auto content-end w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
-        <CardHeader
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={title}
-          subheader={"$9.00"}
-        ></CardHeader>
-        <CardMedia className="flex flex-col items-center">
-          <TikTokIframe videoId={tiktokID} />
-          {/* <CarouselComponent /> */}
-        </CardMedia>
-        <CardContent className="flex flex-col w-100">
-          <div className="flex flex-row gap-x-4 pb-2 items-center w-100">
-            <BasicRating />
-            <Link href={`/store/${params.client}/${productID}`} className="">
-              <Chip variant="outlined" color="primary" label="Learn More" />
-            </Link>
-          </div>
-
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            {description}
-          </Typography>
-        </CardContent>
-        <CardActions
-          disableSpacing
-          className="flex flex-row justify-center space-x-4 items-center"
-        >
-          <IconButton className="space-x-3" aria-label="comments">
-            <Badge badgeContent={1} color="secondary">
-              <ChatOutlinedIcon />
-            </Badge>
-
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              {"Comments"}
-            </Typography>
-          </IconButton>
-          <IconButton className="space-x-1" aria-label="share">
-            <ShareIcon />
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-              {"Share"}
-            </Typography>
-          </IconButton>
-        </CardActions>
-      </Card>
-    )
-  }
-
   return (
-    <div className="flex flex-row-reverse justify-start flex-row bg-white min-h-screen overflow-hidden">
+    <div className="flex flex-row-reverse py-12 justify-start flex-row bg-white min-h-screen overflow-hidden">
       <TopAppBar client={params.client} />
       <div className="w-full px-4 flex flex-col gap-6 p-4 text-black dark:text-white">
-        <Typography variant="h4" className="text-center">
-          {params.client}
-        </Typography>
-
-        {restaurantItems.map((item, index) => (
-          <RecipeReviewCard
-            key={index}
-            productID={item.productID}
-            title={item.title}
-            subheader={item.subheader}
-            tiktokID={item.url}
-            description={item.description}
-            avatar={item.avatar}
-          />
-        ))}
+        {restaurantItems
+          .filter((menuItem) => menuItem.productID === params.productID)
+          .map((item, index) => (
+            <RecipeReviewCard
+              key={index}
+              title={item.title}
+              subheader={item.subheader}
+              tiktokID={item.url}
+              description={item.description}
+              avatar={item.avatar}
+            />
+          ))}
       </div>
+      {/* use redux to change state of what is shown */}
+      {/* product details */}
+      {/* product comments */}
+      {/* product share */}
+      <ProductNavigation />
     </div>
   )
 }

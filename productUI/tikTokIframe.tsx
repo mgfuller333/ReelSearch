@@ -7,7 +7,7 @@ const TikTokIframe = ({ videoId }) => {
     <iframe
       src={src + "?&music_info=0&description=1&controls=1&loop=1&rel=1"}
       width="325"
-      height="575"
+      height="400"
       frameBorder="0"
       allowFullScreen
       title="TikTok video"
