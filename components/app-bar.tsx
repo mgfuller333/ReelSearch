@@ -10,11 +10,7 @@ import CatalogNav from "./catalog-select"
 
 // Assuming CatalogNav is in a file called catalog-select
 
-interface TopAppBarProps {
-  client: string
-}
-
-export default function TopAppBar({ client }: TopAppBarProps) {
+export default function TopAppBar({ client }: { client: string }) {
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary" sx={{ bottom: "auto", top: 0 }}>
@@ -28,7 +24,7 @@ export default function TopAppBar({ client }: TopAppBarProps) {
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton color="inherit" aria-label="open drawer">
-              <CatalogNav client="Nobu" />
+              <CatalogNav client={client} />
             </IconButton>
           </Box>
 
