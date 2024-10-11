@@ -8,7 +8,13 @@ import Typography from "@mui/material/Typography"
 
 import CatalogNav from "./catalog-select"
 
-export default function TopAppBar({ client }) {
+// Assuming CatalogNav is in a file called catalog-select
+
+interface TopAppBarProps {
+  client: string
+}
+
+export default function TopAppBar({ client }: TopAppBarProps) {
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary" sx={{ bottom: "auto", top: 0 }}>
@@ -22,7 +28,7 @@ export default function TopAppBar({ client }) {
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton color="inherit" aria-label="open drawer">
-              <CatalogNav />
+              <CatalogNav client="Nobu" />
             </IconButton>
           </Box>
 

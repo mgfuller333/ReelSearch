@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { CommentSection } from "react-comments-section"
 
@@ -16,35 +18,30 @@ const DefaultCommentSection = () => {
       replies: [],
     },
   ]
+
   return (
-    <CommentSection
-      currentUser={{
-        currentUserId: "01a",
-        currentUserImg:
-          "https://ui-avatars.com/api/name=Riya&background=random",
-        currentUserProfile: "https://www.linkedin.com/in/riya-negi-8879631a9/",
-        currentUserFullName: "Riya Negi",
-      }}
-      logIn={{
-        onLogin: () => alert("Call login function"),
-        signUpLink: "http://localhost:3000/",
-      }}
-      commentData={data}
-      placeHolder={"Write a comment..."}
-      onSubmitAction={(data: {
-        userId: string
-        comId: string
-        avatarUrl: string
-        userProfile?: string
-        fullName: string
-        text: string
-        replies: any
-        commentId: string
-      }) => console.log("check submit, ", data)}
-      currentData={(data: any) => {
-        console.log("current data", data)
-      }}
-    />
+    <div className="text-black">
+      <CommentSection
+        currentUser={{
+          currentUserId: "01a",
+          currentUserImg:
+            "https://ui-avatars.com/api/name=Riya&background=random",
+          currentUserProfile:
+            "https://www.linkedin.com/in/riya-negi-8879631a9/",
+          currentUserFullName: "Riya Negi",
+        }}
+        logIn={{
+          onLogin: () => alert("Call login function"),
+          signUpLink: "http://localhost:3000/",
+        }}
+        commentData={data}
+        placeHolder={"Write a comment..."}
+        onSubmitAction={(data) => console.log("check submit,", data)}
+        currentData={(data) => {
+          console.log("current data", data)
+        }}
+      />
+    </div>
   )
 }
 
