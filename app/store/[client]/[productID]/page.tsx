@@ -1,7 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { useState } from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import DefaultCommentSection from "@/productUI/commentsSection"
 import BasicRating from "@/productUI/rating"
@@ -12,7 +11,17 @@ import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined"
 import InfoIcon from "@mui/icons-material/Info"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ShareIcon from "@mui/icons-material/Share"
-import { Badge, Box, Chip, CssBaseline } from "@mui/material"
+import {
+  Badge,
+  Box,
+  Button,
+  Chip,
+  CssBaseline,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material"
 import BottomNavigation from "@mui/material/BottomNavigation"
 import BottomNavigationAction from "@mui/material/BottomNavigationAction"
 import Card from "@mui/material/Card"
@@ -23,6 +32,12 @@ import CardMedia from "@mui/material/CardMedia"
 import IconButton, { IconButtonProps } from "@mui/material/IconButton"
 import Paper from "@mui/material/Paper"
 import Typography from "@mui/material/Typography"
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+} from "react-share"
 
 import TopAppBar from "@/components/app-bar"
 
@@ -36,8 +51,8 @@ function RecipeReviewCard({ title, subheader, tiktokID, description, avatar }) {
             <MoreVertIcon />
           </IconButton>
         }
+        titleTypographyProps={{ variant: "h6" }} // Adjusts the title text size
         title={title}
-        titleTypographyProps={{ className: "text-sm" }}
         subheader={"$9.00"}
       ></CardHeader>
       <CardMedia className="flex flex-col items-center">
@@ -140,6 +155,51 @@ export default function RestaurantCards({
     },
   ]
 
+  const [openShareDialog, setOpenShareDialog] = useState(false)
+
+  const handleClickOpen = () => {
+    setOpenShareDialog(true)
+  }
+
+  const handleClose = () => {
+    setOpenShareDialog(false)
+  }
+
+  const ShareDialog = () => {
+    // This is the URL and text you want to share
+    const shareUrl = "https://example.com"
+    const shareText = "Check out this amazing content!"
+
+    return (
+      <div>
+        <Dialog open={openShareDialog} onClose={handleClose}>
+          <DialogTitle>Share this content</DialogTitle>
+          <DialogContent>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                padding: "10px",
+              }}
+            >
+              <FacebookShareButton url={shareUrl}>
+                <FacebookIcon size={40} round />
+              </FacebookShareButton>
+              <TwitterShareButton url={shareUrl} title={shareText}>
+                <TwitterIcon size={40} round />
+              </TwitterShareButton>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    )
+  }
+
   return (
     <div className="flex flex-row-reverse py-12 justify-start flex-row bg-white min-h-screen overflow-hidden">
       <TopAppBar client={params.client} />
@@ -193,8 +253,10 @@ export default function RestaurantCards({
               label="Share"
               value="Details"
               icon={<ShareIcon />}
+              onClick={handleClickOpen}
             />
           </BottomNavigation>
+          {openShareDialog && <ShareDialog />}
         </Paper>
       </Box>
     </div>
