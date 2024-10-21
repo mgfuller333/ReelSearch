@@ -29,11 +29,11 @@ export default function RestaurantCards({
   params: { productID: string; client: string }
 }) {
   return (
-    <div className="flex flex-row-reverse py-12 justify-start flex-row bg-white min-h-screen overflow-hidden">
+    <div className="flex min-h-screen flex-row flex-row-reverse justify-start overflow-hidden bg-white py-12">
       <TopAppBar client={params.client} />
 
-      <div className="w-full px-4 flex flex-col gap-6 p-4 text-black dark:text-white">
-        <DefaultCommentSection />
+      <div className="flex w-full flex-col gap-6 p-4 px-4 text-black dark:text-white">
+        <DefaultCommentSection item={params.productID} />
       </div>
 
       <Box sx={{ pb: 7 }}>

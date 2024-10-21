@@ -13,7 +13,15 @@ import CatalogNav from "./catalog-select"
 export default function TopAppBar({ client }: { client: string }) {
   return (
     <React.Fragment>
-      <AppBar position="fixed" color="primary" sx={{ bottom: "auto", top: 0 }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          bottom: "auto",
+          top: 0,
+          color: "white",
+          backgroundColor: "#0C0C0D",
+        }}
+      >
         <Toolbar
           sx={{
             display: "flex",
@@ -38,12 +46,6 @@ export default function TopAppBar({ client }: { client: string }) {
           >
             {client}
           </Typography>
-
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton color="inherit">
-              <ShoppingCartIcon />
-            </IconButton>
-          </Box>
         </Toolbar>
       </AppBar>
     </React.Fragment>

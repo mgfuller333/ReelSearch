@@ -1,4 +1,4 @@
-// File: /Users/morganfuller/Documents/Invoke/ReelSearch/temp/ReelSearch/app/(marketing)/pricing/page.tsx
+// File: /Users/owusubonsu/Documents/Projects/ReelSearch/app/(marketing)/pricing/page.tsx
 import * as entry from '../../../../../app/(marketing)/pricing/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

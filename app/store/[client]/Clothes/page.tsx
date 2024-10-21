@@ -44,7 +44,7 @@ export default function RestaurantCards({
     avatar,
   }) {
     return (
-      <Card className="mx-auto content-end w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
+      <Card className="mx-auto w-full content-end md:w-3/4 lg:w-2/3 xl:w-1/2">
         <CardHeader
           action={
             <IconButton aria-label="settings">
@@ -58,9 +58,9 @@ export default function RestaurantCards({
           <TikTokIframe videoId={tiktokID} />
           {/* <CarouselComponent /> */}
         </CardMedia>
-        <CardContent className="flex flex-col w-100 p-2">
+        <CardContent className="w-100 flex flex-col p-2">
           <BasicRating />
-          <div className="flex flex-row gap-x-4 py-2 items-center w-100">
+          <div className="w-100 flex flex-row items-center gap-x-4 py-2">
             <Link
               href={`/store/${params.client}/${category}/${productID}`}
               className=""
@@ -80,10 +80,10 @@ export default function RestaurantCards({
         </CardContent>
         <CardActions
           disableSpacing
-          className="flex flex-row justify-center space-x-4 items-center"
+          className="flex flex-row items-center justify-center space-x-4"
         >
           <IconButton
-            className="flex flex-row space-x-3 items-center"
+            className="flex flex-row items-center space-x-3"
             aria-label="comments"
           >
             <Badge badgeContent={1} color="secondary">
@@ -99,7 +99,7 @@ export default function RestaurantCards({
             </Link>
           </IconButton>
           <IconButton
-            className="flex flex-row space-x-1 items-center"
+            className="flex flex-row items-center space-x-1"
             aria-label="share"
           >
             <Link
@@ -119,9 +119,9 @@ export default function RestaurantCards({
   }
 
   return (
-    <div className="flex flex-row-reverse justify-start flex-row bg-white min-h-screen overflow-hidden">
+    <div className="flex min-h-screen flex-row flex-row-reverse justify-start overflow-hidden bg-white">
       <TopAppBar client={params.client} />
-      <div className="w-full px-4 pt-16 flex flex-col gap-6 p-4 text-black dark:text-white">
+      <div className="flex w-full flex-col gap-6 bg-neutral-800 p-4 px-4 pt-16 text-black dark:text-white">
         {clothingItems.map((item, index) => (
           <RecipeReviewCard
             key={index}
