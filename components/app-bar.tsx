@@ -11,9 +11,21 @@ import CatalogNav from "./catalog-select"
 // Assuming CatalogNav is in a file called catalog-select
 
 export default function TopAppBar({ client }: { client: string }) {
+  //swap toolbar color
   return (
     <React.Fragment>
-      <AppBar position="fixed" color="primary" sx={{ bottom: "auto", top: 0 }}>
+      <AppBar
+        position="fixed"
+        color="primary"
+        sx={{
+          bottom: "auto",
+          top: 0,
+          backgroundColor: "rgba(91, 58, 41, 0.75)", // Hershey's chocolate with 75% opacity
+          backdropFilter: "blur(10px)", // Frosted glass effect
+          WebkitBackdropFilter: "blur(10px)", // Frosted glass effect for Safari
+        }}
+        className="bg-[#5B3A29]/70 backdrop-blur-md shadow-md text-white dark:bg-[#4E3225]/70 dark:text-white"
+      >
         <Toolbar
           sx={{
             display: "flex",
@@ -34,6 +46,7 @@ export default function TopAppBar({ client }: { client: string }) {
               position: "absolute",
               left: "50%",
               transform: "translateX(-50%)",
+              color: "#faefe3",
             }}
           >
             {client}
@@ -41,7 +54,7 @@ export default function TopAppBar({ client }: { client: string }) {
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton color="inherit">
-              <ShoppingCartIcon />
+              <ShoppingCartIcon sx={{ color: "#faefe3" }} />
             </IconButton>
           </Box>
         </Toolbar>

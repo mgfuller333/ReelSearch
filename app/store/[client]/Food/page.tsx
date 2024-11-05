@@ -21,10 +21,10 @@ import TopAppBar from "@/components/app-bar"
 
 import { restaurantItems } from "../items"
 
-export const metadata = {
-  title: "Promo",
-  description: "Enjoy a Promotional Offer from one of reelSearch's Partners",
-}
+// export const metadata = {
+//   title: "Promo",
+//   description: "Enjoy a Promotional Offer from one of reelSearch's Partners",
+// }
 
 // Individual RecipeReviewCard component
 
@@ -34,7 +34,7 @@ export default function RestaurantCards({
 }: {
   params: { client: string }
 }) {
-  function RecipeReviewCard({
+  function ProductCatCard({
     title,
     productID,
     category,
@@ -44,7 +44,7 @@ export default function RestaurantCards({
     avatar,
   }) {
     return (
-      <Card className="mx-auto content-end w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
+      <Card className="content-end w-full">
         <CardHeader
           action={
             <IconButton aria-label="settings">
@@ -86,9 +86,19 @@ export default function RestaurantCards({
             className="flex flex-row space-x-3 items-center"
             aria-label="comments"
           >
-            <Badge badgeContent={1} color="secondary">
+            <Badge
+              badgeContent={1}
+              color="secondary"
+              sx={{
+                "& .MuiBadge-badge": {
+                  backgroundColor: "#754f3b", // Dark brown like Hershey's chocolate
+                  color: "white", // Text color for contrast
+                },
+              }}
+            >
               <ChatOutlinedIcon />
             </Badge>
+
             <Link
               href={`/store/${params.client}/${category}/${productID}/Comments`}
               className="flex items-center"
@@ -119,20 +129,25 @@ export default function RestaurantCards({
   }
 
   return (
-    <div className="flex flex-row-reverse justify-start flex-row bg-white min-h-screen overflow-hidden">
+    //this should be a componenet with the input clothing items
+    <div className="flex flex-row-reverse justify-start flex-row bg-[#faefe3] min-h-screen overflow-hidden b">
       <TopAppBar client={params.client} />
-      <div className="w-full px-4 pt-16 flex flex-col gap-6 p-4 text-black dark:text-white">
+      <div className="w-full px-4 pt-16 sm:flex sm:flex-col sm:py-4 p-4 text-black md:grid md:grid-cols-2 md:gap-6 lg:grid-cols-3 md:py-20 dark:text-white">
         {restaurantItems.map((item, index) => (
-          <RecipeReviewCard
+          <div
             key={index}
-            productID={item.productID}
-            title={item.title}
-            category={item.category}
-            subheader={item.subheader}
-            tiktokID={item.url}
-            description={item.description}
-            avatar={item.avatar}
-          />
+            className="w-full sm:w-auto md:w-full mb-4 shadow-xl shadow-yellow-800/50 rounded-md hover:border-[#754f3b] hover:border-2" // Border appears only on hover
+          >
+            <ProductCatCard
+              productID={item.productID}
+              title={item.title}
+              category={item.category}
+              subheader={item.subheader}
+              tiktokID={item.url}
+              description={item.description}
+              avatar={item.avatar}
+            />
+          </div>
         ))}
       </div>
     </div>

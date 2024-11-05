@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+import BottomNav from "@/productUI/bottomNav"
 import DefaultCommentSection from "@/productUI/commentsSection"
 import BasicRating from "@/productUI/rating"
 import TikTokIframe from "@/productUI/tikTokIframe"
@@ -36,38 +37,11 @@ export default function RestaurantCards({
         <DefaultCommentSection />
       </div>
 
-      <Box sx={{ pb: 7 }}>
-        <CssBaseline />
-        <Paper
-          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-          elevation={3}
-        >
-          <BottomNavigation showLabels>
-            <Link
-              href={`/store/${params.client}/${clothingItems[0].category}/${params.productID}`}
-            >
-              <BottomNavigationAction label="Details" icon={<InfoIcon />} />
-            </Link>
-
-            <Link
-              href={`/store/${params.client}/${clothingItems[0].category}/${params.productID}/Comments`}
-              className=""
-            >
-              <BottomNavigationAction
-                label="Comments"
-                icon={<ChatOutlinedIcon />}
-              />
-            </Link>
-
-            <Link
-              href={`/store/${params.client}/${clothingItems[0].category}/${params.productID}/Share`}
-              className=""
-            >
-              <BottomNavigationAction label="Share" icon={<ShareIcon />} />
-            </Link>
-          </BottomNavigation>
-        </Paper>
-      </Box>
+      <BottomNav
+        products={clothingItems}
+        productID={params.productID}
+        client={params.client}
+      />
     </div>
   )
 }

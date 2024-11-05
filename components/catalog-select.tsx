@@ -20,12 +20,12 @@ export default function CatalogNav({ client }: { client: string }) {
   }
 
   return (
-    <Box sx={{ minWidth: 100 }}>
-      <FormControl sx={{ width: 110 }}>
+    <Box sx={{ minWidth: 130 }}>
+      <FormControl sx={{ width: 120 }}>
         <InputLabel
           id="demo-simple-select-label"
           sx={{
-            color: "white",
+            color: "#faefe3",
             "&.Mui-focused": {
               color: "transparent !important",
             },
@@ -34,7 +34,7 @@ export default function CatalogNav({ client }: { client: string }) {
             },
           }}
         >
-          Menu
+          Examples
         </InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -43,21 +43,21 @@ export default function CatalogNav({ client }: { client: string }) {
           defaultValue=""
           onChange={handleChange}
           sx={{
-            color: "white",
+            color: "#faefe3",
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "white",
+              borderColor: "#faefe3",
             },
             "& .MuiSvgIcon-root": {
-              color: "white",
+              color: "#faefe3",
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: "white",
+              borderColor: "#faefe3",
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: "white",
+              borderColor: "#faefe3",
             },
             "& .MuiInputBase-input": {
-              color: "white",
+              color: "#faefe3",
             },
             "& .MuiSelect-selectMenu": {
               backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -66,7 +66,7 @@ export default function CatalogNav({ client }: { client: string }) {
           }}
           inputProps={{
             sx: {
-              color: "white",
+              color: "black",
             },
           }}
         >
