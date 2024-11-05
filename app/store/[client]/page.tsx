@@ -6,5 +6,5 @@ type Params = {
 }
 
 export default async function HomePage({ params }: { params: Params }) {
-  redirect(`/store/${params.client}/Clothes`)
+  redirect(`/store/${params.client}/Food`)
 }
