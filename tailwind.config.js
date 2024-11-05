@@ -20,6 +20,9 @@ module.exports = {
     extend: {
       colors: {
         border: "hsl(var(--border))",
+        copper: {
+          DEFAULT: '#B87333', // Copper color
+        },
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
