@@ -129,31 +129,26 @@ export default async function StoryPage() {
           >
             Welcome to the reelSearch experience
           </Typography>
+
           <Link
             target="_blank"
-            href="https://chromewebstore.google.com/detail/reelSearch-reel-analysis/ccdmcpcbaedfaklppmfdpigmhjdkomhh?hl=en"
-            className={cn(
-              buttonVariants({ size: "default" }),
-              "add-to-chrome-button bg-slate-200 pr-3 hover:bg-slate-300"
-            )}
-            data-from="story-page"
+            href="/store/Demo"
+            className={`${cn(
+              buttonVariants({ size: "lg" })
+            )} add-to-chrome-button mr-2 bg-slate-200
+                  hover:bg-slate-300
+                  `}
+            data-from="marketing-hero"
           >
-            <Image
-              src="/chrome.svg"
-              width={30}
-              height={30}
-              alt="Chrome Extension"
-              className="my-1 mr-3"
-            />
-            <span className="text-sm text-black ">Get Started</span>
+            <span className="text-xs text-black md:text-base">Get Started</span>
           </Link>
         </CardContent>
         <Image
           className="w-48  lg:h-full lg:w-96"
-          alt="Founder & Tesla"
+          alt="reel menu art"
           height="504"
           width="378"
-          src="/FoodTikTok.jpg"
+          src="/pexels-tokyo.jpg"
         />
       </Card>
     </span>

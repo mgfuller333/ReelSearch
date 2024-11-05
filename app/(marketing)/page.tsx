@@ -50,7 +50,7 @@ export default async function IndexPage() {
               <h1 className="mt-3 text-center font-heading text-lg sm:text-lg md:text-3xl lg:text-left lg:text-4xl">
                 Go To Social Media Engagment Integration For Commerce.
               </h1>
-              <span className="mt-5 flex max-w-[52rem] flex-col items-center gap-2 text-left text-sm leading-normal text-muted-foreground sm:text-base sm:leading-8 lg:flex-row lg:text-base">
+              <span className="mt-5 flex max-w-[52rem] flex-col items-center gap-2 text-left text-sm leading-normal text-muted-foreground sm:text-base sm:leading-8 lg:flex-row lg:text-lg">
                 #1 Social Media Integration for Product Catalogues
                 <Rating name="read-only" value={5} readOnly />
               </span>
@@ -58,7 +58,7 @@ export default async function IndexPage() {
               <div className="mt-10 flex flex-row items-center justify-center  gap-2 lg:justify-start">
                 <Link
                   target="_blank"
-                  href="https://chromewebstore.google.com/detail/reelSearch-reel-analysis/ccdmcpcbaedfaklppmfdpigmhjdkomhh?hl=en"
+                  href="/store/Demo"
                   className={`${cn(
                     buttonVariants({ size: "lg" })
                   )} add-to-chrome-button mr-2 bg-slate-200
@@ -66,13 +66,6 @@ export default async function IndexPage() {
                   `}
                   data-from="marketing-hero"
                 >
-                  <Image
-                    src="/chrome.svg"
-                    width={30}
-                    height={30}
-                    alt="Chrome Extension"
-                    className=" my-3 mr-3"
-                  />
                   <span className="text-xs text-black md:text-base">
                     Get Started
                   </span>
@@ -86,7 +79,7 @@ export default async function IndexPage() {
                 The reelSearch integration emphasizes:
               </p>
 
-              <ul className="mb-10 list-none justify-center text-center text-base text-muted-foreground lg:mb-40 lg:justify-start lg:text-left lg:text-2xl">
+              <ul className="mb-10 list-none justify-center text-center text-base text-muted-foreground lg:mb-40 lg:justify-start lg:text-left lg:text-xl">
                 <li key={1} className="flex items-center">
                   <span className="mr-2">
                     <CheckCircleOutlineIcon />

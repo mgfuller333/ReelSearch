@@ -1,10 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Button, CardActionArea, CardActions } from "@mui/material"
-import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
-import CardMedia from "@mui/material/CardMedia"
-import Typography from "@mui/material/Typography"
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material"
 import { allPosts } from "contentlayer/generated"
 import { compareDesc } from "date-fns"
 
@@ -26,16 +29,22 @@ export default async function BlogPage() {
       <div
         className="relative flex h-[300px] flex-col items-center justify-center bg-cover bg-center sm:min-h-[200px] sm:px-4 md:min-h-[300px] lg:min-h-[400px]"
         style={{
-          backgroundImage:
-            'url("https://as1.ftcdn.net/v2/jpg/05/29/70/28/1000_F_529702804_iKEd9oFxq16K2egg7yLxC8FRMuEZaqMN.jpg")',
+          backgroundImage: 'url("/pexels-tokyo.jpg")', // Background image
         }}
       >
-        <b className="font-heading text-2xl leading-[1.1] text-gray-200 sm:text-3xl md:text-6xl">
-          Blog
-        </b>
-        <p className="mt-40 max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7 lg:mt-3">
-          Learn how to get started with reelSearch.
-        </p>
+        {/* Background for the text */}
+        <div className="absolute inset-0 bg-black bg-opacity-50" />{" "}
+        {/* Dark overlay */}
+        <div className="relative z-10 flex flex-col items-center text-center">
+          {" "}
+          {/* Center the text */}
+          <b className="font-heading text-2xl leading-[1.1] text-gray-200 sm:text-3xl md:text-6xl">
+            Blog
+          </b>
+          <p className="mt-2 max-w-full text-center text-white leading-normal sm:text-lg lg:mt-3">
+            Learn how to get started with reelSearch.
+          </p>
+        </div>
       </div>
 
       <div className="mx-auto flex w-full flex-col gap-4 md:max-w-[58rem]">
@@ -43,7 +52,7 @@ export default async function BlogPage() {
           {/* Blog Card  */}
           {posts?.length ? (
             <>
-              {posts.map((post, index) => (
+              {posts.map((post) => (
                 <article key={post._id}>
                   <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
@@ -52,11 +61,7 @@ export default async function BlogPage() {
                       image={post.image}
                       alt={post.title}
                     />
-                    <CardContent
-                      sx={{
-                        minHeight: 150,
-                      }}
-                    >
+                    <CardContent sx={{ minHeight: 150 }}>
                       <Typography gutterBottom variant="h5" component="div">
                         {post.title}
                       </Typography>
